@@ -8,8 +8,8 @@
 - 🛒 **Sepet İşlemleri
 
   # Technologies used
-   🚀 **Express.js ve MongoDB
-  💻 **React ve Ant Design
+  - 🚀 **Express.js ve MongoDB
+  - 💻 **React ve Ant Design
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
