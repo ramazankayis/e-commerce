@@ -1,4 +1,15 @@
 # React + Vite
+# 🚀 React, Express.js, MongoDB ve Ant Design ile Full Stack E-Ticaret Sitesi
+- 🛍️ **Ürün ve Kategori Yönetimi
+- 👥 **Kullanıcı Kaydı ve Girişi
+- 💳 **Ödeme Sistemi
+- 🎁 **Kupon Kodları
+- 🖥️ **Admin Paneli
+- 🛒 **Sepet İşlemleri
+
+  # Technologies used
+   🚀 **Express.js ve MongoDB
+  💻 **React ve Ant Design
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
