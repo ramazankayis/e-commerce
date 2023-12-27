@@ -9,22 +9,11 @@ const MainLayout = ({ children }) => {
   const [isDialogShow, setIsDialogShow] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect dialog");
-    console.log(
-      'localStorage.getItem("dialog")',
-      localStorage.getItem("dialog")
-    );
-    console.log(
-      'JSON.parse(!!localStorage.getItem("dialog"))',
-      JSON.parse(!!localStorage.getItem("dialog"))
-    );
     const dialogStatus = localStorage.getItem("dialog")
       ? JSON.parse(localStorage.getItem("dialog"))
       : localStorage.setItem("dialog", JSON.stringify(true));
     setTimeout(() => {
       setIsDialogShow(dialogStatus);
-
-      console.log("dialogStatus", dialogStatus);
     }, 2000);
   }, []);
 

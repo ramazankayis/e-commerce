@@ -13,7 +13,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 function App() {
   return (
     <React.Fragment>
-      <HomePage />
+      {/* <HomePage /> */}
       {/* <ShopPage /> */}
       {/* <ContactPage />  */}
       {/* <Auth/> */}
@@ -21,7 +21,7 @@ function App() {
       {/* <CartPage />  */}
       {/* <BlogPage/> */}
       {/* <BlogDetailsPage /> */}
-      {/* <ProductDetailsPage /> */}
+      <ProductDetailsPage />
     </React.Fragment>
   );
 }
