@@ -19,6 +19,7 @@
 
 .single-tabs .tab-list a.active {
   font-weight: 500;
+  background-color:rgb(217, 243, 243);
 }
 
 .single-tabs .tab-panel-descriptions {
