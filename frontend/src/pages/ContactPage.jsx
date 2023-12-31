@@ -5,11 +5,7 @@ import Footer from "../components/Layout/Footer/Footer";
 import Contact from "../components/Contact/contact";
 
 const ContactPage = () => {
-  return (
-  
-      <Contact />
-    
-  );
+  return <Contact />;
 };
 
 export default ContactPage;

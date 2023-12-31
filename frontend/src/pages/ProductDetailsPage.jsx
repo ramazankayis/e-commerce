@@ -1,16 +1,8 @@
-import { Fragment } from "react" 
-import ProductDetails from "../components/ProductDetails/ProductDetails"
+import { Fragment } from "react";
+import ProductDetails from "../components/ProductDetails/ProductDetails";
 
- 
 const ProductDetailsPage = () => {
-  return (
- 
+  return <ProductDetails />;
+};
 
-      
-        <ProductDetails/>
-       
- 
-  )
-}
-
-export default ProductDetailsPage
+export default ProductDetailsPage;

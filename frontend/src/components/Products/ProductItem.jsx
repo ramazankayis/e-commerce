@@ -1,16 +1,29 @@
+import PropTypes from "prop-types";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartProvider";
+import { Link } from "react-router-dom";
 import "./ProductItem.css";
-const ProductItem = () => {
+const ProductItem = ({ productItem }) => {
+  const { addToCart, cartItems } = useContext(CartContext);
+  console.log("cartItems111=>", cartItems);
+
+  
+
+  const filteredCart = cartItems.find(
+    (cartItem) => cartItem.id === productItem.id
+  );
+
   return (
     <div className="product-item glide__slide glide__slide--active">
       <div className="product-image">
         <a href="#">
-          <img src="img/products/product1/1.png" alt="" className="img1" />
-          <img src="img/products/product1/2.png" alt="" className="img2" />
+          <img src={productItem.img.singleImage} alt="" className="img1" />
+          <img src={productItem.img.thumbs[1]} alt="" className="img2" />
         </a>
       </div>
       <div className="product-info">
         <a href="$" className="product-title">
-          Analogue Resin Strap
+          {productItem.name}
         </a>
         <ul className="product-star">
           <li>
@@ -30,20 +43,28 @@ const ProductItem = () => {
           </li>
         </ul>
         <div className="product-prices">
-          <strong className="new-price">$108.00</strong>
-          <span className="old-price">$165.00</span>
+          <strong className="new-price">
+            ${productItem.price.newPrice.toFixed(2)}
+          </strong>
+          <span className="old-price">
+            ${productItem.price.oldPrice.toFixed(2)}
+          </span>
         </div>
-        <span className="product-discount">-22%</span>
+        <span className="product-discount">-{productItem.discount}%</span>
         <div className="product-links">
-          <button className="add-to-cart" data-id="1">
+          <button
+            className="add-to-cart"
+            onClick={() => addToCart(productItem)}
+            disabled={filteredCart}
+          >
             <i className="bi bi-basket-fill"></i>
           </button>
           <button>
             <i className="bi bi-heart-fill"></i>
           </button>
-          <a href="#" className="product-link" data-id="1">
+          <Link to={`product/${productItem.id}`} className="product-link">
             <i className="bi bi-eye-fill"></i>
-          </a>
+          </Link>
           <a href="#">
             <i className="bi bi-share-fill"></i>
           </a>
@@ -54,3 +75,6 @@ const ProductItem = () => {
 };
 
 export default ProductItem;
+ProductItem.propTypes = {
+  productItem: PropTypes.object,
+};
