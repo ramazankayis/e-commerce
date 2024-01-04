@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Tüm kategorileri getirme
+// Tüm kategorileri getirme (Read-All)
 router.get("/", async (req, res) => {
   try {
     const categories = await Category.find();
@@ -87,7 +87,6 @@ router.delete("/:categoryId", async (req, res) => {
     res.status(500).json({ error: "Server error." });
   }
 });
-
-//user.findByIdAndRemove({_id :idRemove},(err, doc)
+ 
 
 module.exports = router;
