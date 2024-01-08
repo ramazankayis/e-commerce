@@ -1,63 +1,58 @@
-import { Button, Popconfirm, Table, message } from "antd";
+import { Button, Popconfirm, Space, Table, message } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
-
+import moment from "moment";
 const CategoryPage = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Kategori Görseli",
+      dataIndex: "img",
+      key: "img",
       render: (imgSrc) => (
-        <img
-          src={imgSrc}
-          alt="Image"
-          style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-        />
+        <img src={imgSrc} alt="Image" style={{ width: 100 }} />
       ),
     },
     {
-      title: "Username",
-      dataIndex: "username",
-      key: "username",
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      render: (text) => <b>{text}</b>,
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
+      title: "Oluşturma Tarihi",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (text) => moment().subtract(10, "days").calendar(),
     },
     {
       title: "Actions",
       dataIndex: "actions",
       key: "actions",
       render: (_, record) => [
-        console.log("record", record),
-        <Popconfirm
-          title="Kullanıcıyı Sil"
-          description="Kullanıcıyı silmek istediğinizden emin misiniz?"
-          okText="Yes"
-          cancelText="No"
-          onConfirm={() => deleteUser(record._id)}
-          key={record._id}
-        >
-          <Button type="primary" danger>
-            Delete
-          </Button>
-        </Popconfirm>,
+        <Space>
+          <Button type="primary">Düzenle</Button>
+          <Popconfirm
+            title="Kategoriyi Sil"
+            description="Kategoriyi silmek istediğinizden emin misiniz?"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => deleteCategory(record._id)}
+            key={record._id}
+          >
+            <Button type="primary" danger>
+              Delete
+            </Button>
+          </Popconfirm>
+        </Space>,
       ],
     },
   ];
-  const fetchUsers = useCallback(async () => {
+  const fetchCategories = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/api/users`);
+      const response = await fetch(`${apiUrl}/api/categories`);
       if (response.ok) {
         const data = await response.json();
 
@@ -74,15 +69,15 @@ const CategoryPage = () => {
     }
   }, [apiUrl]);
 
-  const deleteUser = async (userId) => {
-    console.log("userId", userId);
+  const deleteCategory = async (categoryId) => {
+    console.log("categoryId", categoryId);
     try {
-      const response = await fetch(`${apiUrl}/api/users/${userId}`, {
+      const response = await fetch(`${apiUrl}/api/categories/${categoryId}`, {
         method: "DELETE",
       });
       if (response.ok) {
-        message.success("Kullanıcı başarıyla silindi...");
-        fetchUsers();
+        message.success("Kategoriyi başarıyla silindi...");
+        fetchCategories();
       } else {
         message.error("Silme işlemi başarısız!!!...");
       }
@@ -95,8 +90,8 @@ const CategoryPage = () => {
     }
   };
   useEffect(() => {
-    fetchUsers();
-  }, [fetchUsers]);
+    fetchCategories();
+  }, [fetchCategories]);
 
   return (
     <Table
