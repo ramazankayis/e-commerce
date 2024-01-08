@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./ProductItem.css";
 const ProductItem = ({ productItem }) => {
   const { addToCart, cartItems } = useContext(CartContext);
-  console.log("cartItems111=>", cartItems);
+ 
 
   
 
