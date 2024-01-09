@@ -35,7 +35,7 @@ const CategoryPage = () => {
       render: (_, record, index) => [
         console.log("record", record),
         console.log("index", index),
-        <Space>
+        <Space key={record._id}>
           <Button
             type="primary"
             onClick={() => navigate(`/admin/categories/update/${record._id}`)}
