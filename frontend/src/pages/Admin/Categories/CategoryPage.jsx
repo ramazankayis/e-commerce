@@ -1,10 +1,12 @@
 import { Button, Popconfirm, Space, Table, message } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 const CategoryPage = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const columns = [
     {
       title: "Kategori Görseli",
@@ -30,9 +32,17 @@ const CategoryPage = () => {
       title: "Actions",
       dataIndex: "actions",
       key: "actions",
-      render: (_, record) => [
+      render: (_, record, index) => [
+        console.log("record", record),
+        console.log("index", index),
         <Space>
-          <Button type="primary">Düzenle</Button>
+          <Button
+            type="primary"
+            onClick={() => navigate(`/admin/categories/update/${record._id}`)}
+            key={index}
+          >
+            Düzenle
+          </Button>
           <Popconfirm
             title="Kategoriyi Sil"
             description="Kategoriyi silmek istediğinizden emin misiniz?"
@@ -41,7 +51,7 @@ const CategoryPage = () => {
             onConfirm={() => deleteCategory(record._id)}
             key={record._id}
           >
-            <Button type="primary" danger>
+            <Button type="primary" danger key={record._id}>
               Delete
             </Button>
           </Popconfirm>
