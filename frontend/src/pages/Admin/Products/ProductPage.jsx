@@ -121,7 +121,12 @@ const ProductPage = () => {
       });
       if (response.ok) {
         message.success("Ürünü başarıyla silindi...");
+        //1.yol 
         fetchProducts();
+        //2. yol tekrar get işlemi yapmamak için
+        // setDataSource((prevProducts) => {
+        //     return prevProducts.filter((product) => product._id !== productId);
+        //   });
       } else {
         message.error("Silme işlemi başarısız!!!...");
       }
