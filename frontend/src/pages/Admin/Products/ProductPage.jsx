@@ -16,7 +16,7 @@ const ProductPage = () => {
         // imgSrc.map((img, index) => (
         //   <img src={img} key={index} alt="Image" style={{ width: 100 }} />
         // )),
-        <img src={imgSrc[0]} alt="Image" style={{ width: 100 }} />
+        <img src={imgSrc[0].split("\n")} alt="Image" style={{ width: 100 }} />
       ),
     },
     {
@@ -30,6 +30,18 @@ const ProductPage = () => {
       dataIndex: "categoryName",
       key: "categoryName",
       render: (text) => <b>{text}</b>,
+    },
+    {
+      title: "Boyutlar",
+      dataIndex: "sizes",
+      key: "sizes",
+      render: (text) => (
+        <b>
+          {String(text)
+            .split("\n")
+            .map((link) => link.trim())}
+        </b>
+      ),
     },
     {
       title: "Fiyat",
@@ -47,7 +59,7 @@ const ProductPage = () => {
       title: "Oluşturma Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text) => moment().subtract(10, "days").calendar(),
+      render: (text) => moment().format("DD.MM.YYYY"),
     },
     {
       title: "Actions",
@@ -121,7 +133,7 @@ const ProductPage = () => {
       });
       if (response.ok) {
         message.success("Ürünü başarıyla silindi...");
-        //1.yol 
+        //1.yol
         fetchProducts();
         //2. yol tekrar get işlemi yapmamak için
         // setDataSource((prevProducts) => {
@@ -138,6 +150,7 @@ const ProductPage = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);

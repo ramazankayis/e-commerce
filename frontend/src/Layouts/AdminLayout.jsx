@@ -140,6 +140,7 @@ const AdminLayout = ({ children }) => {
               mode="vertical"
               style={{
                 height: "100%",
+                position: "fixed",
               }}
               items={menuItems}
             />
