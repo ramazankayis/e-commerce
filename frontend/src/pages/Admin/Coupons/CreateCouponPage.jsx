@@ -39,10 +39,11 @@ const CreateCouponPage = () => {
         <Form.Item
           label="Kupon Kodu"
           name="code"
+          style={{ maxWidth: 300 }}
           rules={[
             {
               required: true,
-              message: "Lütfen Kupon adını giriniz!",
+              message: "Lütfen Kupon kodu giriniz!",
             },
           ]}
         >
@@ -52,6 +53,7 @@ const CreateCouponPage = () => {
         <Form.Item
           label="Kupon indirimi oranı"
           name="discountPercent"
+          style={{ maxWidth: 300 }}
           rules={[
             {
               required: true,

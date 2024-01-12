@@ -59,7 +59,7 @@ const ProductPage = () => {
       title: "Oluşturma Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text) => moment().format("DD.MM.YYYY"),
+      render: (text) => moment(text).format("DD.MM.YYYY"),
     },
     {
       title: "Actions",

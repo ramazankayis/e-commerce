@@ -81,6 +81,7 @@ const CreateProductPage = () => {
         <Form.Item
           label="Ürün İsmi"
           name="name"
+          style={{ maxWidth: 600 }}
           rules={[
             {
               required: true,
@@ -94,6 +95,7 @@ const CreateProductPage = () => {
         <Form.Item
           label="Ürün Kategorisi "
           name="category"
+          style={{ maxWidth: 700 }}
           rules={[
             {
               required: true,

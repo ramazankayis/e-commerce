@@ -1,10 +1,11 @@
 import { Button, Form, Input, Spin, message } from "antd";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const CreateCategoryPage = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -16,6 +17,7 @@ const CreateCategoryPage = () => {
         },
         body: JSON.stringify(values),
       });
+      navigate(`/admin/categories`);
       if (response.ok) {
         message.success("Kategori başarıyla oluşturuldu.");
         form.resetFields();
