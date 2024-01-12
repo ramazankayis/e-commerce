@@ -1,12 +1,13 @@
-import { Button, Checkbox, Form, Input, Spin, message } from "antd";
+import { Button, Form, Input, Spin, message } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 const UpdateCategoryPage = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const params = useParams();
   const categoriyId = params.id;
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   console.log("categoriyId", categoriyId);
   const onFinish = async (values) => {
@@ -22,6 +23,7 @@ const UpdateCategoryPage = () => {
       });
       if (response.ok) {
         message.success("Kategori başarıyla güncellendi.");
+        navigate(`/admin/categories`);
       } else {
         message.error("Kategori güncelenirken bir hata oluştu.");
       }

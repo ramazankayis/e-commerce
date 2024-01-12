@@ -63,16 +63,15 @@ const UpdateProductPage = () => {
       ]);
       if (!categoriesRensponse.ok || !singleProductResponse.ok) {
         message.error("Veri getirme başarısız!!!...");
+        return;
       }
       const [categoriesData, singleProductsData] = await Promise.all([
         categoriesRensponse.json(),
         singleProductResponse.json(),
       ]);
-      console.log("singleProductsData", singleProductsData);
-      console.log("singleProduct222222222", singleProduct);
 
       setCategories(categoriesData);
-      setSingleProduct(singleProductsData);
+      // setSingleProduct(singleProductsData);
 
       console.log("singleProductsData.img=>", singleProductsData.img);
       if (singleProductsData) {
@@ -217,7 +216,7 @@ const UpdateProductPage = () => {
         </Form.Item>
 
         <Button type="primary" htmlType="submit">
-          Oluştur
+          Güncelle
         </Button>
       </Form>
     </Spin>
