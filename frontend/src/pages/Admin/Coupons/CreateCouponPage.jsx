@@ -1,29 +1,33 @@
 import { Button, Form, Input, Spin, message } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const CreateCategoryPage = () => {
+const CreateCouponPage = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
+    console.log("values", values);
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/api/categories`, {
+      const response = await fetch(`${apiUrl}/api/coupons`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify(values),
       });
+      navigate(`/admin/coupons`);
       if (response.ok) {
-        message.success("Kategori başarıyla oluşturuldu.");
+        message.success("Kupon başarıyla oluşturuldu.");
         form.resetFields();
       } else {
-        message.error("Kategori oluşturulurken bir hata oluştu.");
+        message.error("Kupon oluşturulurken bir hata oluştu.");
       }
     } catch (error) {
-      console.log("Kategori oluşturma hatası :", error);
+      console.log("Kupon oluşturma hatası :", error);
     } finally {
       setLoading(false);
     }
@@ -33,12 +37,12 @@ const CreateCategoryPage = () => {
     <Spin tip="Loading..." size="large" spinning={loading}>
       <Form form={form} name="basic" layout="vertical" onFinish={onFinish}>
         <Form.Item
-          label="Kategori İsmi"
-          name="name"
+          label="Kupon Kodu"
+          name="code"
           rules={[
             {
               required: true,
-              message: "Lütfen kategori adını giriniz!",
+              message: "Lütfen Kupon adını giriniz!",
             },
           ]}
         >
@@ -46,12 +50,12 @@ const CreateCategoryPage = () => {
         </Form.Item>
 
         <Form.Item
-          label="Kategori görseli (link)"
-          name="img"
+          label="Kupon indirimi oranı"
+          name="discountPercent"
           rules={[
             {
               required: true,
-              message: "Lütfen kategori görsel linkini giriniz!",
+              message: "Lütfen kupon indirim oranı giriniz!",
             },
           ]}
         >
@@ -66,4 +70,4 @@ const CreateCategoryPage = () => {
   );
 };
 
-export default CreateCategoryPage;
+export default CreateCouponPage;
