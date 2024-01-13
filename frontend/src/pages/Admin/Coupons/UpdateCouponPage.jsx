@@ -1,43 +1,44 @@
-import { Button, Form, Input, Spin, message } from "antd";
+import { Button, Form, Input, InputNumber, Spin, message } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-const UpdateCategoryPage = () => {
+const UpdateCouponPage = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const params = useParams();
-  const categoriyId = params.id;
+  const couponId = params.id;
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  console.log("categoriyId", categoriyId);
+  console.log("couponId", couponId);
   const onFinish = async (values) => {
     console.log("form", form.getFieldsValue());
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/api/categories/${categoriyId}`, {
+      const response = await fetch(`${apiUrl}/api/coupons/${couponId}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify(values),
       });
+      
       if (response.ok) {
-        message.success("Kategori başarıyla güncellendi.");
-        navigate(`/admin/categories`);
+        message.success("Kupon başarıyla güncellendi.");
+        navigate(`/admin/coupons`);
       } else {
-        message.error("Kategori güncelenirken bir hata oluştu.");
+        message.error("Kupon güncelenirken bir hata oluştu.");
       }
     } catch (error) {
-      console.log("Kategori güncelleme hatası :", error);
+      console.log("Kupon güncelleme hatası :", error);
     } finally {
       setLoading(false);
     }
   };
-  const fetchSingleCategory = useCallback(async () => {
+  const fetchSingleCoupon = useCallback(async () => {
     setLoading(true);
      
     try {
-      const response = await fetch(`${apiUrl}/api/categories/${categoriyId}`);
+      const response = await fetch(`${apiUrl}/api/coupons/${couponId}`);
       if (!response.ok) {
         throw new Error("Verileri getirme hatası");
       }
@@ -45,8 +46,8 @@ const UpdateCategoryPage = () => {
       console.log("data", data);
       if (data) {
         form.setFieldsValue({
-          name: data.name,
-          img: data.img,
+          code: data.code,
+          discountPercent: data.discountPercent,
         });
       }
     } catch (error) {
@@ -54,11 +55,11 @@ const UpdateCategoryPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [apiUrl]);
+  }, [apiUrl,couponId]);
 
   useEffect(() => {
-    fetchSingleCategory();
-  }, [fetchSingleCategory]);
+    fetchSingleCoupon();
+  }, [fetchSingleCoupon]);
 
   return (
     <Spin tip="Loading..." size="large" spinning={loading}>
@@ -73,12 +74,12 @@ const UpdateCategoryPage = () => {
         onFinish={onFinish}
       >
         <Form.Item
-          label="Kategori İsmi"
-          name="name"
+          label="Kupon Kodu"
+          name="code"
           rules={[
             {
               required: true,
-              message: "Lütfen kategori adını giriniz!",
+              message: "Lütfen kupon kodu giriniz!",
             },
           ]}
         >
@@ -86,16 +87,16 @@ const UpdateCategoryPage = () => {
         </Form.Item>
 
         <Form.Item
-          label="Kategori görseli (link)"
-          name="img"
+          label="Kupon indirim oranı"
+          name="discountPercent"
           rules={[
             {
               required: true,
-              message: "Lütfen kategori görsel linkini giriniz!",
+              message: "Lütfen kupon indirim oranı giriniz!",
             },
           ]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
 
         <Button type="primary" htmlType="submit">
@@ -106,4 +107,4 @@ const UpdateCategoryPage = () => {
   );
 };
 
-export default UpdateCategoryPage;
+export default UpdateCouponPage;

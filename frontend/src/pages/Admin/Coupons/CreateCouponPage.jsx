@@ -1,4 +1,4 @@
-import { Button, Form, Input, Spin, message } from "antd";
+import { Button, Form, Input, InputNumber, Spin, message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -61,7 +61,7 @@ const CreateCouponPage = () => {
             },
           ]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
 
         <Button type="primary" htmlType="submit">

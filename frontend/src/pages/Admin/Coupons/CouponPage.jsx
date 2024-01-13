@@ -36,7 +36,7 @@ const CouponPage = () => {
         <Space key={record._id}>
           <Button
             type="primary"
-            onClick={() => navigate(`/admin/categories/update/${record._id}`)}
+            onClick={() => navigate(`/admin/coupons/update/${record._id}`)}
             key={index}
           >
             Düzenle
