@@ -13,11 +13,11 @@ const ProductDetails = ({singleProduct}) => {
           <div className="single-content">
             <main className="site-main">
               <Gallery singleProduct={singleProduct}/>
-              <Info />
+              <Info singleProduct={singleProduct} />
             </main>
           </div>
 
-          <Tabs/>
+          <Tabs singleProduct={singleProduct}/>
         </div>
       </div>
     </section>

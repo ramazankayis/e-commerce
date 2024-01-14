@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Reviews from "../../Reviews/Reviews";
 import "./Tabs.css";
-const Tabs = () => {
+const Tabs = ({ singleProduct }) => {
   const [activeTab, setActiveTab] = useState("desc");
 
   const handleTableClick = (e, tab) => {
@@ -46,25 +46,10 @@ const Tabs = () => {
           } `}
           id="desc"
         >
-          <p>
-            Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin
-            vitae magna in dui finibus malesuada et at nulla. Morbi elit ex,
-            viverra vitae ante vel, blandit feugiat ligula. Fusce fermentum
-            iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
-            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc
-            tristique lacinia. Nullam aliquam mauris eu accumsan tincidunt.
-            Suspendisse velit ex, aliquet vel ornare vel, dignissim a tortor.
-          </p>
-          <br />
-          <p>
-            Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin
-            vitae magna in dui finibus malesuada et at nulla. Morbi elit ex,
-            viverra vitae ante vel, blandit feugiat ligula. Fusce fermentum
-            iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
-            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc
-            tristique lacinia. Nullam aliquam mauris eu accumsan tincidunt.
-            Suspendisse velit ex, aliquet vel ornare vel, dignissim a tortor.
-          </p>
+          <p
+            className="product-description"
+            dangerouslySetInnerHTML={{ __html: singleProduct.description }}
+          ></p>
         </div>
         <div
           className={`tab-panel-information content ${
@@ -87,7 +72,11 @@ const Tabs = () => {
               <tr>
                 <th>Size</th>
                 <td>
-                  <p>XXS, XS, S, M, L, XL, XXL</p>
+                  {singleProduct.sizes.map((item, index) => (
+                    <span key={index}>{item.toUpperCase()}
+                    { index <singleProduct.sizes.length -1 && ", "}
+                    </span>
+                  ))}
                 </td>
               </tr>
             </tbody>
