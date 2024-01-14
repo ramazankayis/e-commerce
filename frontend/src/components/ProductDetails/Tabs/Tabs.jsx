@@ -84,6 +84,7 @@ const Tabs = ({ singleProduct }) => {
         </div>
         <Reviews
           active={activeTab === "reviews" ? "content active" : "content"}
+          singleProduct={singleProduct}
         />
       </div>
     </div>
