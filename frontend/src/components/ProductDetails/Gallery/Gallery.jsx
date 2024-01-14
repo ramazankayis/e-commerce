@@ -29,14 +29,27 @@ const PrevBtn = ({ onClick }) => {
     </button>
   );
 };
-const Gallery = () => {
-  console.log("productsData", productsData[0].img.thumbs[0]);
+const Gallery = ({ singleProduct }) => {
+  console.log("singleProduct=>", singleProduct.img[0]); 
+
+  // const { pathname } = useLocation();
+  // const subId = pathname.substring(pathname.length - 1, pathname.length);
+  // const [activeImg, setActiveImg] = useState({
+  //   img: productsData[Number(subId) - 1].img.singleImage,
+  //   imgIndex: 0,
+  // });
   const { pathname } = useLocation();
-  const subId = pathname.substring(pathname.length - 1, pathname.length);
+ 
   const [activeImg, setActiveImg] = useState({
-    img: productsData[Number(subId) - 1].img.singleImage,
+    img: singleProduct.img[0],
     imgIndex: 0,
   });
+
+  //"https://e-commerce-udemy.netlify.app/img/products/product5/1.png"
+  //from "img" search index
+  // const regex = "img";
+  // const imgValueIndex = activeImg.img.search(regex);
+  console.log("activeImg", activeImg);
 
   const sliderSettings = {
     dots: false,
@@ -49,34 +62,32 @@ const Gallery = () => {
   return (
     <div className="product-gallery">
       <div className="single-image-wrapper">
-        <img src={`/${activeImg.img}`} id="single-image" alt="" />
+        <img src={`${activeImg.img}`} id="single-image" alt="" />
       </div>
       <div className="product-thumb">
         <div className="glide__track" data-glide-el="track">
           <ol className="gallery-thumbs glide__slides">
             <Slider {...sliderSettings}>
-              {productsData[Number(subId) - 1].img.thumbs.map(
-                (itemImg, index) => (
-                  <li
-                    key={index}
-                    onClick={() =>
-                      setActiveImg({
-                        img: productsData[Number(subId) - 1].img.thumbs[index],
-                        imgIndex: index,
-                      })
-                    }
-                    className="glide__slide glide__slide--active"
-                  >
-                    <img
-                      src={`/${itemImg}`}
-                      alt=""
-                      className={`img-fluid ${
-                        activeImg.imgIndex === index ? "active" : ""
-                      }`}
-                    />
-                  </li>
-                )
-              )}
+              {singleProduct.img.map((itemImg, index) => (
+                <li
+                  key={index}
+                  onClick={() =>
+                    setActiveImg({
+                      img: itemImg,
+                      imgIndex: index,
+                    })
+                  }
+                  className="glide__slide glide__slide--active"
+                >
+                  <img
+                    src={`${itemImg}`}
+                    alt=""
+                    className={`img-fluid ${
+                      activeImg.imgIndex === index ? "active" : ""
+                    }`}
+                  />
+                </li>
+              ))}
             </Slider>
           </ol>
         </div>

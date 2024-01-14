@@ -3,7 +3,7 @@ import Breadcrumb from "./Breadcrumb/Breadcrumb";
 import "./ProductDetails.css";
 import Info from "./Info/Info";
 import Tabs from "./Tabs/Tabs";
-const ProductDetails = () => {
+const ProductDetails = ({singleProduct}) => {
   return (
     <section className="single-product">
       <div className="container">
@@ -12,7 +12,7 @@ const ProductDetails = () => {
 
           <div className="single-content">
             <main className="site-main">
-              <Gallery />
+              <Gallery singleProduct={singleProduct}/>
               <Info />
             </main>
           </div>
