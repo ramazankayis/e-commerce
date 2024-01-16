@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+ 
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 
 import { useParams } from "react-router-dom";

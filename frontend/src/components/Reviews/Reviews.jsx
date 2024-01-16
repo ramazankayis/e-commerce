@@ -22,7 +22,7 @@ const Reviews = ({ active, singleProduct }) => {
 
       <div className="review-form-wrapper">
         <h2>Add a review</h2>
-        <ReviewForm />
+        <ReviewForm singleProduct={singleProduct} />
       </div>
     </div>
   );
