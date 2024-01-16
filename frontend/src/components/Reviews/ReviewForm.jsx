@@ -1,14 +1,15 @@
 import { message } from "antd";
 import React, { useState } from "react";
 
-const ReviewForm = ({ singleProduct }) => {
+const ReviewForm = ({ singleProduct, setSingleProduct }) => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+  const [checkout, setcheckout] = useState(false);
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-  console.log("review", review);
+
   const handleRatingChange = (e, newRating) => {
     e.preventDefault();
     setRating(newRating);
@@ -42,6 +43,7 @@ const ReviewForm = ({ singleProduct }) => {
 
       if (res.ok) {
         const data = await res.json();
+        setSingleProduct(data);
         console.log("data", data);
         setReview("");
         setRating(0);
@@ -128,7 +130,11 @@ const ReviewForm = ({ singleProduct }) => {
       </div>
 
       <div className="comment-form-cookies">
-        <input id="cookies" type="checkbox" />
+        <input
+          id="cookies"
+          type="checkbox"
+          onClick={() => setcheckout((checkout) => !checkout)}
+        />
         <label htmlFor="cookies">
           Save my name, email, and website in this browser for the next time I
           comment.

@@ -1,6 +1,13 @@
 import React from "react";
 
-const ReviewItem = () => {
+const ReviewItem = ({ item }) => {
+  console.log("item", item);
+  const { text, rating, createdAt } = item;
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = new Date(createdAt).toLocaleDateString(
+    "tr-TR",
+    options
+  );
   return (
     <li className="comment-item">
       <div className="comment-avatar">
@@ -8,32 +15,80 @@ const ReviewItem = () => {
       </div>
       <div className="comment-text">
         <ul className="comment-star">
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
+          {rating === 1 && (
+            <>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              1
+            </>
+          )}
+          {rating === 2 && (
+            <>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+            </>
+          )}
+          {rating === 3 && (
+            <>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+            </>
+          )}
+          {rating === 4 && (
+            <>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+            </>
+          )}
+          {rating === 5 && (
+            <>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+              <li>
+                <i className="bi bi-star-fill"></i>
+              </li>
+            </>
+          )}
         </ul>
         <div className="comment-meta">
           <strong>admin</strong>
           <span>-</span>
-          <time>April 23, 2022</time>
+          <time>{formattedDate}</time>
         </div>
         <div className="comment-description">
-          <p>
-            Sed perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium.
-          </p>
+          <p>{text}</p>
         </div>
       </div>
     </li>

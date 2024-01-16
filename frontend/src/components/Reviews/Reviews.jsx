@@ -2,7 +2,7 @@ import React from "react";
 import "./Reviews.css";
 import ReviewForm from "./ReviewForm";
 import ReviewItem from "./ReviewItem";
-const Reviews = ({ active, singleProduct }) => {
+const Reviews = ({ active, singleProduct,setSingleProduct }) => {
   return (
     <div className={`tab-panel-reviews ${active}`}>
       {singleProduct.reviews.length > 0 ? (
@@ -22,7 +22,7 @@ const Reviews = ({ active, singleProduct }) => {
 
       <div className="review-form-wrapper">
         <h2>Add a review</h2>
-        <ReviewForm singleProduct={singleProduct} />
+        <ReviewForm singleProduct={singleProduct} setSingleProduct={setSingleProduct} />
       </div>
     </div>
   );
