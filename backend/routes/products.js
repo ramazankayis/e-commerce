@@ -59,11 +59,9 @@ router.put("/:productId", async (req, res) => {
       return res.status(404).json({ error: "Product not found." });
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(
-      productId,
-      updates,
-      { new: true }
-    );
+    const updatedProduct = await Product.findByIdAndUpdate(productId, updates, {
+      new: true,
+    });
 
     res.status(200).json(updatedProduct);
   } catch (error) {
@@ -84,6 +82,30 @@ router.delete("/:productId", async (req, res) => {
     }
 
     res.status(200).json(deletedProduct);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Server error." });
+  }
+});
+
+// Ürünleri isme göre arama (searching)
+
+router.get("/search/:productName", async (req, res) => {
+  try {
+    const productName = req.params.productName;
+
+    const products = await Product.find({
+      name: {
+        $regex: productName,
+        $options: "i",
+      },
+    });
+
+    if (!res.status(200)) {
+      return res.status(500).json({ error: "Product not found." });
+    }
+
+    res.status(200).json(products);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Server error." });
