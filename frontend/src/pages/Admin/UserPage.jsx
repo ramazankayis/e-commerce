@@ -75,7 +75,6 @@ const UserPage = () => {
   }, [apiUrl]);
 
   const deleteUser = async (userId) => {
-    console.log("userId", userId);
     try {
       const response = await fetch(`${apiUrl}/api/users/${userId}`, {
         method: "DELETE",
@@ -86,8 +85,6 @@ const UserPage = () => {
       } else {
         message.error("Silme işlemi başarısız!!!...");
       }
-
-      console.log("response=>", response);
     } catch (error) {
       console.log("Silme hatası :", error);
     } finally {

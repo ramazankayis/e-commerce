@@ -23,7 +23,7 @@ const ReviewForm = ({ singleProduct, setSingleProduct }) => {
         {
           text: review,
           rating: parseInt(rating),
-          user: user.id,
+          user: user.id || user._id,
         },
       ],
     };
@@ -44,7 +44,7 @@ const ReviewForm = ({ singleProduct, setSingleProduct }) => {
       if (res.ok) {
         const data = await res.json();
         setSingleProduct(data);
-        console.log("data", data);
+
         setReview("");
         setRating(0);
         message.success("yorum başarıyla eklendi...");
@@ -55,7 +55,6 @@ const ReviewForm = ({ singleProduct, setSingleProduct }) => {
     }
   };
 
-  console.log("singleProduct", singleProduct);
   return (
     <form className="comment-form" onSubmit={handleSubmit}>
       <p className="comment-notes">

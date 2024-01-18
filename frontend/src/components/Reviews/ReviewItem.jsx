@@ -1,94 +1,38 @@
 import React from "react";
 
-const ReviewItem = ({ item }) => {
-  console.log("item", item);
-  const { text, rating, createdAt } = item;
+const ReviewItem = ({ item, reviewItem }) => {
+  //console.log("item", item);
+  const { review, user } = reviewItem;
+
   const options = { year: "numeric", month: "long", day: "numeric" };
-  const formattedDate = new Date(createdAt).toLocaleDateString(
+  const formattedDate = new Date(user.createdAt).toLocaleDateString(
     "tr-TR",
     options
   );
+
+  console.log("review.rating", review.rating);
   return (
     <li className="comment-item">
       <div className="comment-avatar">
-        <img src="/img/avatars/avatar1.jpg" alt="" />
+        <img src={user.avatar} alt="" width={60} />
       </div>
       <div className="comment-text">
         <ul className="comment-star">
-          {rating === 1 && (
-            <>
-              <li>
+          {Array.from({ length: review.rating }, (_, index) => {
+            return (
+              <li key={index}>
                 <i className="bi bi-star-fill"></i>
               </li>
-              1
-            </>
-          )}
-          {rating === 2 && (
-            <>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-            </>
-          )}
-          {rating === 3 && (
-            <>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-            </>
-          )}
-          {rating === 4 && (
-            <>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-            </>
-          )}
-          {rating === 5 && (
-            <>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-              <li>
-                <i className="bi bi-star-fill"></i>
-              </li>
-            </>
-          )}
+            );
+          })}
         </ul>
         <div className="comment-meta">
-          <strong>admin</strong>
+          <strong>{user.username}</strong>
           <span>-</span>
           <time>{formattedDate}</time>
         </div>
         <div className="comment-description">
-          <p>{text}</p>
+          <p>{review.text}</p>
         </div>
       </div>
     </li>
