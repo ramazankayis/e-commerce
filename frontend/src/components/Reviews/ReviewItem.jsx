@@ -1,7 +1,6 @@
 import React from "react";
 
-const ReviewItem = ({ item, reviewItem }) => {
-  //console.log("item", item);
+const ReviewItem = ({ reviewItem }) => {
   const { review, user } = reviewItem;
 
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -10,7 +9,6 @@ const ReviewItem = ({ item, reviewItem }) => {
     options
   );
 
-  console.log("review.rating", review.rating);
   return (
     <li className="comment-item">
       <div className="comment-avatar">

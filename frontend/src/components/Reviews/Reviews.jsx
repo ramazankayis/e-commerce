@@ -17,13 +17,10 @@ const Reviews = ({ active, singleProduct, setSingleProduct }) => {
       } else {
         message.error("Veri getirme başarısız!!!...");
       }
-
-      console.log("response=>", response);
     } catch (error) {
       console.log("Veri  hatası :", error);
     }
   }, [apiUrl]);
-  
 
   useEffect(() => {
     fetchUsers();
@@ -34,12 +31,11 @@ const Reviews = ({ active, singleProduct, setSingleProduct }) => {
     matchingUsers.forEach((matchingUser) => {
       thisReview.push({
         review: review,
-        user:matchingUser
+        user: matchingUser,
       });
     });
   });
 
-  console.log('thisReview', thisReview)
   return (
     <div className={`tab-panel-reviews ${active}`}>
       {singleProduct.reviews.length > 0 ? (
@@ -48,7 +44,7 @@ const Reviews = ({ active, singleProduct, setSingleProduct }) => {
           <div className="comments">
             <ol className="comment-list">
               {thisReview.map((item, index) => (
-                <ReviewItem key={index} item={item}  reviewItem={item}/>
+                <ReviewItem key={index} item={item} reviewItem={item} />
               ))}
             </ol>
           </div>

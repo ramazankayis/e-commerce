@@ -1,4 +1,3 @@
- 
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 
 import { useParams } from "react-router-dom";
@@ -25,9 +24,11 @@ const ProductDetailsPage = () => {
     fetchSingleProduct();
   }, [fetchSingleProduct]);
 
-  console.log("singleProduct", singleProduct);
   return singleProduct ? (
-    <ProductDetails singleProduct={singleProduct} setSingleProduct={setSingleProduct} />
+    <ProductDetails
+      singleProduct={singleProduct}
+      setSingleProduct={setSingleProduct}
+    />
   ) : (
     <p>Ürün yükleniyor...</p>
   );

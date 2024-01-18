@@ -30,8 +30,6 @@ const PrevBtn = ({ onClick }) => {
   );
 };
 const Gallery = ({ singleProduct }) => {
-  console.log("singleProduct=>", singleProduct.img[0]); 
-
   // const { pathname } = useLocation();
   // const subId = pathname.substring(pathname.length - 1, pathname.length);
   // const [activeImg, setActiveImg] = useState({
@@ -39,7 +37,7 @@ const Gallery = ({ singleProduct }) => {
   //   imgIndex: 0,
   // });
   const { pathname } = useLocation();
- 
+
   const [activeImg, setActiveImg] = useState({
     img: singleProduct.img[0],
     imgIndex: 0,
@@ -49,7 +47,6 @@ const Gallery = ({ singleProduct }) => {
   //from "img" search index
   // const regex = "img";
   // const imgValueIndex = activeImg.img.search(regex);
-  console.log("activeImg", activeImg);
 
   const sliderSettings = {
     dots: false,
