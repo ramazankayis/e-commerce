@@ -2,6 +2,9 @@ import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
 const CartProvider = ({ children }) => {
+
+  const [couponForOnce, setCouponForOnce] = useState(false);
+  const couponValue = JSON.parse(localStorage.getItem("cartCoupon"));
   const [cartItems, setCartItems] = useState(
     localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
@@ -33,7 +36,11 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         addToCart,
+        setCartItems,
         cartItems,
+        couponForOnce,
+        setCouponForOnce,
+        couponValue,
         removeFromCart,
       }}
     >

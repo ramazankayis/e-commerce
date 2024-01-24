@@ -8,6 +8,10 @@ import { CartContext } from "../../context/CartProvider";
 
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
+
+  if (cartItems.length === 0) {
+    localStorage.setItem("cartCoupon", JSON.stringify(false));
+  }
   return (
     <section className="cart-page">
       <div className="container">

@@ -8,6 +8,12 @@ const Header = ({ setIsSearchShow }) => {
   const user = localStorage.getItem("user");
   const { pathname } = useLocation();
   console.log("pathname", pathname);
+  const refreshPage = () => {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 100);
+    console.log("page to reload");
+  };
   return (
     <header>
       <div className="global-notification">
@@ -26,7 +32,7 @@ const Header = ({ setIsSearchShow }) => {
               <i className="bi bi-list" id="btn-menu"></i>
             </div>
             <div className="header-left">
-              <Link to={"/"} className="logo">
+              <Link to={"/"} className="logo" onClick={refreshPage}>
                 LOGO
               </Link>
             </div>
@@ -37,6 +43,7 @@ const Header = ({ setIsSearchShow }) => {
                     <Link
                       to={"/"}
                       className={`menu-link ${pathname === "/" && "active"}`}
+                      onClick={refreshPage}
                     >
                       Home
                       <i className="bi bi-chevron-down"></i>
@@ -79,6 +86,7 @@ const Header = ({ setIsSearchShow }) => {
                       className={`menu-link ${
                         pathname === "/shop" && "active"
                       }`}
+                      onClick={refreshPage}
                     >
                       Shop
                       <i className="bi bi-chevron-down"></i>
@@ -191,6 +199,7 @@ const Header = ({ setIsSearchShow }) => {
                       className={`menu-link ${
                         pathname === "/blog" && "active"
                       }`}
+                      onClick={refreshPage}
                     >
                       Blog
                     </Link>
@@ -201,6 +210,7 @@ const Header = ({ setIsSearchShow }) => {
                       className={`menu-link ${
                         pathname === "/contact" && "active"
                       }`}
+                      onClick={refreshPage}
                     >
                       Contact
                     </Link>

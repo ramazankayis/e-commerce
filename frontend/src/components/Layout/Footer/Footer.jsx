@@ -3,6 +3,12 @@ import Policy from "../Policy/Policy";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 const Footer = () => {
+  const refreshPage = () => {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  };
   return (
     <React.Fragment>
       <Policy />
@@ -71,7 +77,7 @@ const Footer = () => {
             <div className="footer-widgets">
               <div className="brand-info">
                 <div className="footer-logo">
-                  <Link to={"/"} className="logo">
+                  <Link to={"/"} className="logo" onClick={refreshPage}>
                     LOGO
                   </Link>
                 </div>
