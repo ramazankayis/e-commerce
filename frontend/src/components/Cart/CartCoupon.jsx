@@ -13,8 +13,7 @@ const CartCoupon = () => {
   const [couponCode, setCouponCode] = useState("");
   const applyCoupon = async (e) => {
     //  e.preventDefault();
-    console.log("couponCode", couponCode);
-    console.log("couponValue1111111", couponValue);
+  
 
     if (couponCode.trim().length === 0) {
       return message.warning("Boş değer girilemez.");
@@ -39,7 +38,7 @@ const CartCoupon = () => {
         localStorage.setItem("cartCoupon", JSON.stringify(!couponForOnce));
         setCartItems(updatedCartItems);
         message.success(`${couponCode} kupon kodu başarıyla uygulandı.`);
-        //console.log('couponForOnce', couponForOnce)
+         
       }
     } catch (error) {
       console.log("error", error);
