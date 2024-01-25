@@ -12,7 +12,7 @@ const Header = ({ setIsSearchShow }) => {
     setTimeout(() => {
       window.location.reload(false);
     }, 100);
-    console.log("page to reload");
+     
   };
   return (
     <header>
