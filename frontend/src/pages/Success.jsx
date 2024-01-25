@@ -3,9 +3,16 @@ import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartProvider";
 const Success = () => {
-  const { setCartItems } = useContext(CartContext);
+  const {
+    cartItems,
+    setCartItems,
+    couponForOnce,
+    setCouponForOnce,
+    couponValue,
+  } = useContext(CartContext);
   useEffect(() => {
-    setCartItems([]);
+    setCartItems([]); 
+    localStorage.setItem("cartCoupon", JSON.stringify(false));
   }, [setCartItems]);
 
   return (
