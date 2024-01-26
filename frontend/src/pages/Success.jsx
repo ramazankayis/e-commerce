@@ -11,7 +11,7 @@ const Success = () => {
     couponValue,
   } = useContext(CartContext);
   useEffect(() => {
-    setCartItems([]); 
+    setCartItems([]);
     localStorage.setItem("cartCoupon", JSON.stringify(false));
   }, [setCartItems]);
 
@@ -26,7 +26,9 @@ const Success = () => {
             <Link to={"/"} key="home">
               <Button type="primary">Ana Sayfa</Button>
             </Link>,
-            <Button key="buy">Siparişlerim</Button>,
+            <a href="/admin/orders">
+              <Button key="buy">Siparişlerim</Button>
+            </a>,
           ]}
         />
       </div>
