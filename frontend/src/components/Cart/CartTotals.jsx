@@ -32,7 +32,7 @@ const CartTotals = () => {
   console.log("subTotals", subTotals);
   console.log("fastCargoChecked", fastCargoChecked);
 
-  const hanglePayment = async () => {
+  const handlePayment = async () => {
     if (!user) {
       return message.warning("Ödeme yapabilmek için giriş yapmalısınız!!");
     }
@@ -111,7 +111,7 @@ const CartTotals = () => {
         </tbody>
       </table>
       <div className="checkout">
-        <button className="btn btn-lg" onClick={hanglePayment}>
+        <button className="btn btn-lg" onClick={handlePayment}>
           Proceed to checkout
         </button>
       </div>
