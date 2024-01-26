@@ -47,7 +47,7 @@ const DashboardPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+// mail benzer olmasına bakılıyor . Yani toplamda kaç tane müşteri var.
   const mailUnique = (arr) => {
     let sonuc = [];
     for (let str of arr) {
