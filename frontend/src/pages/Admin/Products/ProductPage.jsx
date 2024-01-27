@@ -72,7 +72,7 @@ const ProductPage = () => {
             onClick={() => navigate(`/admin/products/update/${record._id}`)}
             key={index}
           >
-            Düzenle
+            Güncelle
           </Button>
           <Popconfirm
             title="Ürün Sil"
@@ -83,7 +83,7 @@ const ProductPage = () => {
             key={record._id}
           >
             <Button type="primary" danger key={record._id}>
-              Delete
+              Sil
             </Button>
           </Popconfirm>
         </Space>,

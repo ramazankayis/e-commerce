@@ -41,7 +41,7 @@ const CategoryPage = () => {
             onClick={() => navigate(`/admin/categories/update/${record._id}`)}
             key={index}
           >
-            Düzenle
+            Güncelle
           </Button>
           <Popconfirm
             title="Kategoriyi Sil"
@@ -52,7 +52,7 @@ const CategoryPage = () => {
             key={record._id}
           >
             <Button type="primary" danger key={record._id}>
-              Delete
+              Sil
             </Button>
           </Popconfirm>
         </Space>,

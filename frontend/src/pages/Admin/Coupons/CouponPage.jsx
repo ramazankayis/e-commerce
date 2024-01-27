@@ -39,7 +39,7 @@ const CouponPage = () => {
             onClick={() => navigate(`/admin/coupons/update/${record._id}`)}
             key={index}
           >
-            Düzenle
+            Güncelle
           </Button>
           <Popconfirm
             title="Kuponu Sil"
@@ -50,7 +50,7 @@ const CouponPage = () => {
             key={record._id}
           >
             <Button type="primary" danger key={record._id}>
-              SİL
+              SiL
             </Button>
           </Popconfirm>
         </Space>,

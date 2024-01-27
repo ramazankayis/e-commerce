@@ -48,7 +48,7 @@ const UserPage = () => {
           key={record._id}
         >
           <Button type="primary" danger>
-            Delete
+            Sil
           </Button>
         </Popconfirm>,
       ],
