@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import productsData from "../../../data.json";
 import Slider from "react-slick";
 import "./Gallery.css";
@@ -39,9 +39,16 @@ const Gallery = ({ singleProduct }) => {
   const { pathname } = useLocation();
 
   const [activeImg, setActiveImg] = useState({
-    img: singleProduct.img[0],
+    img: "",
     imgIndex: 0,
   });
+
+  useEffect(() => {
+    setActiveImg({
+      img: singleProduct.img[0],
+      imgIndex: 0,
+    });
+  }, [singleProduct.img]);
 
   //"https://e-commerce-udemy.netlify.app/img/products/product5/1.png"
   //from "img" search index
