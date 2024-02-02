@@ -26,7 +26,7 @@ const CategoryPage = () => {
       title: "Oluşturma Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text) => moment().subtract(10, "days").calendar(),
+      render: (text) => moment(text).format("DD.MM.YYYY"),
     },
     {
       title: "Actions",
